@@ -19,6 +19,7 @@ $(function () {
         ajax: "",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'tanggal', name: 'tanggal'},
             {data: 'barang', name: 'barang'},
             {data: 'jumlah', name: 'jumlah'},
             {data: 'keterangan', name: 'keterangan'},

@@ -14,6 +14,6 @@ class BarangMasuk extends Model
     ];
 
     public function barang(){
-        return $this->belongsTo(Seragam::class);
+        return $this->belongsTo(Seragam::class,'barang_id','id');
     }
 }

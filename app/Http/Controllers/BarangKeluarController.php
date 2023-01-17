@@ -11,6 +11,15 @@ use Validator;
 class BarangKeluarController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth','revalidate']);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -22,15 +31,14 @@ class BarangKeluarController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" title="Edit" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit"><i class="metismenu-icon pe-7s-pen"></i></a>';
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip" title="Hapus" data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete"><i class="metismenu-icon pe-7s-trash"></i></a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" title="Hapus" data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete"><i class="metismenu-icon pe-7s-trash"></i></a>';
                     return $btn;
                 })
                 ->addColumn('barang', function($data){
                     return $data->barang->nama." (".$data->barang->ukuran.")";
                 })
                 ->addColumn('tanggal', function($data){
-                    return $data->barang->created_at->isoFormat('D MMMM Y');
+                    return $data->created_at->isoFormat('D MMMM Y/hh:mm');
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -65,12 +73,18 @@ class BarangKeluarController extends Controller
             'jumlah.required' => 'Kolom Jumlah Wajib Diisi',
         ]);
         if($validator->passes()) {
+            if($request->rusak){
+                $ket = "Rusak";
+            }else{
+                $ket = $request->keterangan;
+            }
             $nama = BarangKeluar::updateOrCreate(
                 ['id' => $request->id],
                 [
                     'barang_id' => $request->barang_id,
                     'jumlah' => $request->jumlah,
-                    'keterangan' => $request->keterangan
+                    'keterangan' => $ket,
+                    'rusak' => $request->rusak
                 ]
             );
             $seragam = Seragam::findOrfail($request->barang_id);
@@ -127,6 +141,9 @@ class BarangKeluarController extends Controller
     {
         $Barang = BarangKeluar::find($id);
         $Barang->delete();
+        $seragam = Seragam::findOrfail($Barang->barang_id);
+            $seragam->stok += $Barang->jumlah;
+            $seragam->save();
         return response()->json($Barang);
     }
 }

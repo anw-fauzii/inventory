@@ -58,6 +58,25 @@
                     </a>
                 </li>
                 <li>
+                    <a href="#" class="{{(request()->is('laporan*')) ? 'mm-active' : ''}}">
+                        <i class="metismenu-icon pe-7s-display1"></i>
+                           Laporan
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul class="{{(request()->is('laporan*')) ? 'mm-show' : ''}}">
+                        <li>
+                            <a href="{{route('laporan.keluar')}}" class="{{ 'laporan/Crypt::encrypt(3)' == request()->path ? 'mm-active' : ''}}">
+                                <i class="metismenu-icon pe-7s-users"></i>Barang Keluar
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{route('laporan.masuk')}}" class="{{ 'laporan/Crypt::encrypt(5)' == request()->path ? 'mm-active' : ''}}">
+                                <i class="metismenu-icon pe-7s-users"></i>Barang Masuk
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();"><i class="metismenu-icon pe-7s-power"></i>Keluar</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

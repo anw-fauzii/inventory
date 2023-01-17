@@ -9,8 +9,14 @@
                     <div class="form-group">
                     <input type="hidden" name="id" id="id">
                         <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="nama">Nama Barang</label>
-                            <div class="col-sm-9"><input type="text" class="form-control" id="barang_id" name="barang_id" placeholder="Masukan Nama" value="" maxlength="50" required="">
-                                </div>
+                            <div class="col-sm-9">
+                                <select name="barang_id" class="form-control" required>
+                                    <option disable="true" selected="true" disabled>--- Pilih Seragam ---</option>
+                                    @foreach($seragam as $p)
+                                    <option value="{{$p->id}}">{{$p->nama}} ({{$p->ukuran}})</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="jumlah">Jumlah</label>
                             <div class="col-sm-9"><input type="text" class="form-control" id="jumlah" name="jumlah" placeholder="Masukan jumlah" value="" maxlength="50" required="">
@@ -19,6 +25,11 @@
                         <div class="position-relative row form-group"><label class="col-sm-3 col-form-label" for="keterangan">Keterangan</label>
                             <div class="col-sm-9"><input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Masukan Keterangan (Jika ada)" value="" maxlength="50" required="">
                                 </div>
+                        </div>
+                        <div class="position-relative form-check">
+                            <label class="form-check-label">
+                                <input type="checkbox" name="rusak" value="1" class="form-check-input"> Barang Rusak
+                            </label>
                         </div>
                     </div>
             </div>

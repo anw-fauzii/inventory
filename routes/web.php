@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BarangKeluarController;
 use App\Http\Controllers\BarangMasukController;
 use App\Http\Controllers\ScanController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ use App\Http\Controllers\ScanController;
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/laporan-barang-keluar', [LaporanController::class, 'keluar'])->name('laporan.keluar');
+Route::get('/laporan-barang-masuk', [LaporanController::class, 'masuk'])->name('laporan.masuk');
 Route::get('/', function () {
     return redirect()->route('login');
 });

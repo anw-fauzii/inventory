@@ -7,8 +7,19 @@ use App\Models\BarangMasuk;
 use Illuminate\Http\Request;
 use DataTables;
 use Validator;
+
 class BarangMasukController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth','revalidate']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,12 +32,14 @@ class BarangMasukController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" title="Edit" data-id="'.$row->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit"><i class="metismenu-icon pe-7s-pen"></i></a>';
-                    $btn = $btn.' <a href="javascript:void(0)" data-toggle="tooltip" title="Hapus" data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete"><i class="metismenu-icon pe-7s-trash"></i></a>';
+                    $btn = '<a href="javascript:void(0)" data-toggle="tooltip" title="Hapus" data-id="'.$row->id.'" data-original-title="Delete" class="btn btn-danger btn-sm delete"><i class="metismenu-icon pe-7s-trash"></i></a>';
                     return $btn;
                 })
                 ->addColumn('barang', function($data){
                     return $data->barang->nama." (".$data->barang->ukuran.")";
+                })
+                ->addColumn('tanggal', function($data){
+                    return $data->created_at->isoFormat('D MMMM Y/hh:mm');
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -122,6 +135,11 @@ class BarangMasukController extends Controller
     {
         $Barang = BarangMasuk::find($id);
         $Barang->delete();
+
+            $seragam = Seragam::findOrfail($Barang->barang_id);
+            $seragam->stok -= $Barang->jumlah;
+            $seragam->save();
+            
         return response()->json($Barang);
     }
 }

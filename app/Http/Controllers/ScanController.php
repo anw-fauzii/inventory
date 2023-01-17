@@ -24,5 +24,9 @@ class ScanController extends Controller
         $seragam = Seragam::findOrfail($request->id);
             $seragam->stok -= $request->jumlah;
             $seragam->save();
+        
+        return redirect()->back()->with('sukses','Pengambilan Barang Sudah Dicatat');
     }
+
+
 }

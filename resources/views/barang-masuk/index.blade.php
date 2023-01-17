@@ -35,6 +35,7 @@
                                 <thead>
                                     <tr class="text-center">
                                         <th>No</th>
+                                        <th>Tanggal</th>
                                         <th>Seragam</th>
                                         <th>Jumlah</th>
                                         <th>Keterangan</th>
