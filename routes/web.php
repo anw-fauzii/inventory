@@ -26,7 +26,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/laporan-barang-keluar', [LaporanController::class, 'keluar'])->name('laporan.keluar');
 Route::get('/laporan-barang-masuk', [LaporanController::class, 'masuk'])->name('laporan.masuk');
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('frontend.index');
 });
 
 Route::resource('/seragam', SeragamController::class);

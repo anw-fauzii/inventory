@@ -90,7 +90,7 @@ class SeragamController extends Controller
                     'qr_code' => $qr_code,
                     'nama' => $request->nama,
                     'ukuran' => $request->ukuran,
-                    'keterangan' => DNS2D::getBarcodeHTML("http://10.11.13.10/scan-seragam/".$qr_code, 'QRCODE'),
+                    'keterangan' => DNS2D::getBarcodeHTML("http://seragam.primainsanigarut.sch.id/".$qr_code, 'QRCODE'),
                     'harga_beli' => $request->harga_beli,
                     'harga_jual' => $request->harga_jual,
                     'stok' => 0,
