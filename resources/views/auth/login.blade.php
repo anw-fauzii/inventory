@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Undangan Perpisahan Kelas VI</title>
+	<title>Manajemen Seragam</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
        <!-- limonte-sweetalert2 -->
@@ -36,7 +36,7 @@
 				<form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
 					@csrf
 					<span class="login100-form-title">
-					Undangan Perpisahan Kelas VI
+					Manajemen Seragam
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "NIS Harus Di isi">
@@ -65,13 +65,13 @@
 						<span class="txt1">
 							Lupa
 						</span>
-						<a class="txt2" href="https://wa.me/+6289609592234" target="_BLANK">
+						<a class="txt2" href="#" target="_BLANK">
 							Username / Password?
 						</a>
 					</div>
 
 					<div class="txt2 text-center p-t-50">
-						<strong>&copy;2022 <a href="http://primainsani.sch.id" target="_blank">Yayasan Prima Insani</a></strong>
+						<strong>&copy;2023 <a href="http://primainsani.sch.id" target="_blank">Yayasan Prima Insani</a></strong>
 					</div>
 				</form>
 			</div>

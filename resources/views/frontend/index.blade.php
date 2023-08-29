@@ -16,8 +16,8 @@
         }
 
         header {
-            background-color: #343a40;
-            color: #ffffff;
+            background: rgb(251,225,19);
+            background: linear-gradient(0deg, rgba(251,225,19,1) 0%, rgba(255,149,0,1) 100%);
             margin: 0;
         }
 
@@ -93,8 +93,8 @@
         }
 
         footer {
-            background-color: #343a40;
-            color: #ffffff;
+            background: rgb(255,149,0);
+            background: linear-gradient(0deg, rgba(255,149,0,1) 0%, rgba(251,225,19,1) 100%);
             padding: 10px 0;
             text-align: center;
         }
@@ -122,7 +122,7 @@
                     <h5 class="card-title mb-4 text-center">Daftar Seragam</h5>
                     <div class="row">
                         <div class="col-md-4 banner">
-                            <img src="{{ asset('frontend/assets/imgs/banner/banner-1.png') }}" alt="Banner 1" class="img-fluid mb-3">
+                            <img src="{{asset('storage/SD/SD.jpg')}}" alt="Banner 1" class="img-fluid mb-3">
                             <div class="banner-overlay">
                                 <div class="banner-text">
                                     <h4>Seragam SD</h4>
@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 banner">
-                            <img src="{{ asset('frontend/assets/imgs/banner/banner-2.png') }}" alt="Banner 2" class="img-fluid mb-3">
+                            <img src="{{asset('storage/TK/TK.jpg')}}" alt="Banner 2" class="img-fluid mb-3">
                             <div class="banner-overlay">
                                 <div class="banner-text">
                                     <h4>Seragam TK</h4>
@@ -140,7 +140,7 @@
                             </div>
                         </div>
                         <div class="col-md-4 banner">
-                            <img src="{{ asset('frontend/assets/imgs/banner/banner-3.png') }}" alt="Banner 3" class="img-fluid mb-3">
+                            <img src="{{asset('storage/PG/PG.jpg')}}" alt="Banner 3" class="img-fluid mb-3">
                             <div class="banner-overlay">
                                 <div class="banner-text">
                                     <h4>Seragam PG</h4>
